@@ -1,0 +1,23 @@
+{
+  "challenge_module": "ThomassenManyColouringsChallenge",
+  "solution_module": "ThomassenManyColouringsSolution",
+  "theorem_names": [
+    "ThomassenManyColourings.two_rpow_card_div_nine_le_ncard_listColourings"
+  ],
+  "definition_names": [
+    "ThomassenManyColourings.numClasses",
+    "ThomassenManyColourings.cycleCount",
+    "ThomassenManyColourings.compSetoid",
+    "ThomassenManyColourings.numComponents",
+    "ThomassenManyColourings.eulerDefect",
+    "ThomassenManyColourings.dartSymm",
+    "ThomassenManyColourings.IsPlanar",
+    "ThomassenManyColourings.listColourings"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

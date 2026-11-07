@@ -1,0 +1,151 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "Thomassen: exponentially many 5-list-colourings of planar graphs"
+  description: >-
+    A Lean 4 / Mathlib formalization of C. Thomassen, Exponentially many 5-list-colorings of planar
+    graphs (J. Combin. Theory Ser. B 97, 2007): a finite planar graph with n vertices, every vertex
+    of which has a list of at least five colours, has at least 2^{n/9} distinct list colourings
+    (two_rpow_card_div_nine_le_ncard_listColourings: (2 : ℝ) ^ (n / 9) ≤ the number of maps
+    f : V → C with f v ∈ L v and f u ≠ f v on every edge). Planarity is combinatorial: a plane map
+    is a rotation system whose hypermap with the dart reversal has Euler defect 0 (definitions
+    copied verbatim from the registered entry thomassen-girth-five, PALOMAR-2026-10-28-000023, so
+    that the Challenge depends on Mathlib only). The proof follows the paper: Theorems 1–4,
+    Claims 8–13 and the lemmas on generalized wheels they use are proved for an abstract interface
+    of near-triangulations, which
+    is realised by plane near-triangulations using the separation theorems of the dependency;
+    every planar graph is a spanning subgraph of a plane near-triangulation. One statement; the
+    definitions of the Challenge are compared with those of the Solution.
+  authors:
+    - "Juan Pablo Traverso Gianini"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Juan Pablo Traverso Gianini"
+
+classification:
+  arxiv: ["math.CO"]
+  msc2020: ["05C15", "05C10", "05C30"]
+
+repository:
+  role: "substantive-development"
+
+sources:
+  - title: "Exponentially many 5-list-colorings of planar graphs"
+    authors:
+      - "Carsten Thomassen"
+    id: "doi:10.1016/j.jctb.2006.09.002"
+    type: "paper"
+    location: "Journal of Combinatorial Theory, Series B 97 (2007), 571–583; the main result (abstract and Section 6), with Theorems 1–4, Lemmas 1, 3, 4, 5 and Claims 8–13."
+    relationship: "formalizes"
+    note: >-
+      Formalized: the main result for finite planar graphs, with the paper's proof: Theorem 1
+      (2-extendability of near-triangulations), Theorem 2 (precoloured outer cycles of length at
+      most five), generalized wheels and Theorem 3 (3-extendability), and Theorem 4 (at least
+      2^{n/9 − r/3} colourings, Claims 8–13, Cases 1 and 2), from which the main result follows by
+      precolouring an outer edge. The paper's geometric steps on plane near-triangulations
+      (splitting along chords and 2-paths, separating triangles, deleting outer vertices) are
+      proved from a combinatorial notion of plane maps, and the reduction from planar graphs to
+      near-triangulations (adding edges to a maximal planar supergraph) is proved with Euler's
+      formula. Lemmas 4 and 5 are proved for broken wheels and broken wheel strings, the only case
+      used in the proof of Theorem 4; Lemma 2 (whose proof the paper leaves to the reader) is not
+      needed by the route taken. Not formalized: Problems 1–4 of the introduction. The formalization is by a
+      different author; the article's author was not involved.
+    license: "all rights reserved"
+    author_endorsement: "not-contacted"
+  - title: "Exponentially many Z5-colorings in simple planar graphs"
+    authors:
+      - "Rikke Langhede"
+      - "Carsten Thomassen"
+    id: "arXiv:2011.12163"
+    type: "paper"
+    location: "arXiv:2011.12163"
+    relationship: "background"
+    note: "Consulted as a second presentation of the 2007 argument (same numbering of theorems and claims); not formalized."
+    license: "CC-BY-4.0"
+    author_endorsement: "not-contacted"
+  - title: "Every planar graph is 5-choosable"
+    authors:
+      - "Carsten Thomassen"
+    id: "doi:10.1006/jctb.1994.1062"
+    type: "paper"
+    location: "Journal of Combinatorial Theory, Series B 62 (1994), 180–181"
+    relationship: "background"
+    note: "Source of Theorem 1 of the 2007 paper; Theorem 1 is formalized here in the form used by the 2007 paper."
+    license: "unknown"
+    author_endorsement: "not-contacted"
+
+related_formalizations:
+  - id: "PALOMAR-2026-10-28-000023 (jtraverso/thomassen-girth-five @ 12765f3)"
+    relationship: "builds-on"
+    note: >-
+      Pinned dependency, imported and not copied: plane maps and Euler's formula
+      (LeanPool.K5MinorFreeChoosability.Planar), restriction of plane maps (Grotzsch.restrictMap),
+      the separation theorems Thomassen.facial_arc_chord_separation,
+      Thomassen.facial_arc_path_separation and Thomassen.cycle_sides_cover / cycle_sides_inter /
+      cycle_sides_no_crossing, the addition of an edge inside a face
+      (exists_planeMap_addEdge) and the gluing of plane maps along one vertex
+      (isPlanar_sup_of_le_one). Only the definitions of combinatorial planarity are repeated, in
+      the Challenge, so that the statement depends on Mathlib only.
+
+status:
+  scope: >-
+    The main result of the paper (every planar graph with n vertices and lists of at least five
+    colours has at least 2^{n/9} list colourings), with the paper's Theorems 1–4, Lemmas 1 and 3,
+    Lemmas 4 and 5 for broken wheels and broken wheel strings, and Claims 8–13 as intermediate
+    results (in the library, not compared). Not formalized: Lemma 2 in general, the general form
+    of Lemmas 4 and 5, and the open problems of the introduction.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5"]
+      framework: "Claude Code (Anthropic)"
+      tool_setup: >-
+        Wrote the Lean development (directory ThomassenManyColourings/), the Challenge/Solution
+        pair and the packaging under the author's direction, checked with lake build, #print
+        axioms and a comparison of the elaborated Challenge and Solution statements and
+        definitions (pp.all) (Lean v4.35.0-rc3, Mathlib c55e6e786f49471c72fbddbec5415808896aec1e).
+      cost:
+        wall_time: "a few days"
+        spend_usd: "subscription-based"
+        hardware: "local machine"
+      prompting_notes: "Natural-language instructions in Spanish, directed by the author."
+  spend_usd: "subscription-based"
+  notes: >-
+    The result was chosen by the human author; the Lean development is AI-written under the
+    author's direction and mechanically verified: no sorry, axioms limited to propext,
+    Classical.choice and Quot.sound, identical elaborated statements and definitions in the
+    Challenge and the Solution.
+
+fidelity:
+  divergences: >-
+    Planar graphs are finite simple graphs on a Fintype vertex type with a combinatorial plane map
+    (a genus-zero rotation system) instead of a drawing in the plane. Lists are Finsets over an
+    arbitrary colour type; the number of list colourings is Set.ncard of the set of maps V → C
+    choosing from the lists and proper on the edges. The bound 2^{n/9} is a real power. Theorems
+    1–4 are stated in the library for an abstract interface of near-triangulations and are not
+    part of the compared statements.
+
+review:
+  status: "agent-reviewed"
+  reviewers:
+    - "Claude Opus 5.5 (AI agent in Claude Code, acting for the author)"
+  notes: >-
+    Agent review by Claude Opus 5.5, distinct from the mechanical verification: the agent compared
+    the statement with the abstract and Section 6 of the paper, checked the definition of
+    planarity against the registered entry it is copied from, and checked the degenerate cases (no
+    vertex, one vertex, two vertices, disconnected graphs). The author directed the work and chose
+    the result. No independent human review of the formalization has been performed. The result
+    is published; no mathematical novelty is claimed.
+
+alignment:
+  namespace: "ThomassenManyColourings"
+  statements:
+    - {source: "Thomassen (2007), main result (abstract; Section 6)", lean: "ThomassenManyColourings.two_rpow_card_div_nine_le_ncard_listColourings", module: "ThomassenManyColouringsChallenge", status: "proved"}
+
+acknowledgements: >-
+  Mathlib and the Lean community.

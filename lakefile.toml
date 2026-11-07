@@ -1,0 +1,29 @@
+name = "thomassen_many_colourings"
+version = "0.1.0"
+defaultTargets = ["ThomassenManyColourings", "ThomassenManyColouringsChallenge", "ThomassenManyColouringsSolution"]
+requiresModuleSystem = true
+
+[leanOptions]
+relaxedAutoImplicit = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.35.0-rc3"
+
+[[require]]
+name = "thomassen_girth_five"
+git = "https://github.com/jtraverso/thomassen-girth-five"
+rev = "12765f3362b48fbae04ac467d33873a4f2234083"
+
+[[lean_lib]]
+name = "ThomassenManyColourings"
+globs = ["ThomassenManyColourings.+"]
+
+[[lean_lib]]
+name = "ThomassenManyColouringsChallenge"
+roots = ["ThomassenManyColouringsChallenge"]
+
+[[lean_lib]]
+name = "ThomassenManyColouringsSolution"
+roots = ["ThomassenManyColouringsSolution"]
